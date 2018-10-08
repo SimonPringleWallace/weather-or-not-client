@@ -8,7 +8,7 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
-
+import TheWeather from './auth/components/weather.js'
 class App extends Component {
   constructor () {
     super()
@@ -16,9 +16,15 @@ class App extends Component {
     this.state = {
       user: null,
       flashMessage: '',
-      flashType: null
+      flashType: null,
+      weatherComponent: false
     }
   }
+  // function to trigger getting a forecast when the button is clicked
+  getWeather = () => {
+    this.setState({weatherComponent: !this.state.weatherComponent})
+  }
+
 
   setUser = user => this.setState({ user })
 
@@ -40,7 +46,7 @@ class App extends Component {
       <React.Fragment>
         <Header user={user} />
         {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
-        
+
         <main className="container">
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
@@ -54,6 +60,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword flash={this.flash} user={user} />
           )} />
+          <button onClick={this.getWeather}> get weather </button>
+          {this.state.weatherComponent ? <TheWeather /> : null}
         </main>
       </React.Fragment>
     )
