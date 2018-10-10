@@ -16,9 +16,10 @@ class Homepage extends React.Component {
     }
   }
 
-  // handle submit and also create a limit to the number of API calls in a session
+  // handle submit
   counter = (e) => {
     e.preventDefault
+    // create a limit to the number of API calls to 5 in a session
     if (this.state.clickCounter === 5) {
       console.log('no more clicks until you sign in')
     }else {
@@ -30,19 +31,18 @@ class Homepage extends React.Component {
       foreCastIndex(this.state.cities[1])
         .then((response) =>response.json())
         .then((data) => {
-          console.log(data)
+          // increment the counter by one for the session.
+          const clicks = this.state.clickCounter + 1
+          //reset the clickCounter number nad the forecast to be the value of
+          //the first daily value(today) returned from the API call.
+          this.setState({clickCounter: clicks, forecast: data.daily.data[0]})
         })
         .catch(error => {
           return error
         })
-      // .then(console.log(data))
 
-
-      // this.setState({forecast: response})
-      // console.log(`clicked ${this.state.clickCounter}`)
-      const clicks = this.state.clickCounter + 1
-      this.setState({clickCounter: clicks})
     }
+    console.log (this.state.forecast)
   }
 
   render () {
