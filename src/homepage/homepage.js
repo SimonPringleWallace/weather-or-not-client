@@ -11,45 +11,49 @@ class Homepage extends React.Component {
         'Somerville', 'Worcester','Springfield',
         'Lenox','Sturbridge'],
       usState:'MA',
-      forecast: [],
+      forecast: '',
       clickCounter: 0,
-      selectedCity:''
+      selectedCity:'',
+      rainStatus: false
     }
   }
 
   // handle get forecast submit
-  counter = (e) => {
+  counter = async (e) => {
     e.preventDefault
     // create a limit to the number of API calls to 5 in a session
-    if (this.state.clickCounter === 5) {
+    if (this.state.clickCounter >= 8) {
       console.log('no more clicks until you sign in')
     }else {
-
-      // have to figure out how to access the value of the item selected from the drop down
-      // then it should be stored in state or props or whatever and used to make the call to the api
-
-      // the function that makes the api call
-      foreCastIndex(this.state.selectedCity)
-        .then((response) =>response.json())
-        .then((data) => {
-          // increment the counter by one for the session.
-          const clicks = this.state.clickCounter + 1
-          //reset the clickCounter number nad the forecast to be the value of
-          //the first daily value(today) returned from the API call.
-          this.setState({clickCounter: clicks, forecast: data.daily.data[0]})
-        })
-        .then(console.log(this.state.forecast))
-        .catch(error => {
-          return error
-        })
-
+      // increment the click counter by one for the session to prevent spamming
+      const clicks = this.state.clickCounter + 1
+      this.setState({clickCounter: clicks})
+      // transform forecast into lowercase and then a string
+      const words = await this.state.forecast.toLowerCase().split(' ')
+      if (words.indexOf('rain') >= 0){
+        this.setState({rainStatus: true})
+      }else if (words.indexOf('raining') >= 0){
+        this.setState({rainStatus: true})
+      }else{
+        this.setState({rainStatus: false})
+      }
+      console.log(this.state.forecast)
+      console.log(this.state.rainStatus)
     }
   }
 
+
   //To handle a user selecting a city from the dropdown menu
-  handleSelect = (e) => {
-    this.setState({selectedCity: e.target.value})
+  handleSelect = async (e) => {
+    await this.setState({selectedCity: e.target.value})
     console.log(`this.state.selected city is ${this.state.selectedCity}`)
+    // set response equal to result of the api call
+    let response = await foreCastIndex(this.state.selectedCity)
+    //convert response to json
+    response = await response.json()
+    //the first daily value(today) returned from the API call.
+    this.setState({forecast: response.daily.data[0].summary})
+    console.log(this.state.forecast)
   }
 
 
@@ -62,7 +66,7 @@ class Homepage extends React.Component {
 
     // toggle whether to show the question mark or the weather symbols
     let className = 'umbrella-or-no'
-    this.state.forecast.length === 0 ? className ='umbrella-or-no-question' : ''
+    !this.state.rainStatus ? className ='umbrella-or-no-question' : ''
     //else if the length is greater than 0, check to see if the string contains 'rain'
     // if it does, give them the umbrella
 
