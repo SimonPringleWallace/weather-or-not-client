@@ -13,7 +13,7 @@ class Homepage extends React.Component {
         'Somerville', 'Worcester','Springfield',
         'Lenox','Sturbridge'],
       usState:'MA',
-      forecast: 'it might be raining later in the day',
+      forecast: '',
       clickCounter: 0,
       selectedCity:'',
       rainStatus: null

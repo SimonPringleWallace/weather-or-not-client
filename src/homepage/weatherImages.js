@@ -1,11 +1,12 @@
 import React from 'react'
+import './weatherImages.scss'
 
 export const Umbrella = () => (
-  <div> umbrella!</div>
+  <div className='umbrella'></div>
 )
 export const QuestionMark = () => (
-  <div>?</div>
+  <div className='question'></div>
 )
 export const AllClear = () => (
-  <div>You good!</div>
+  <div className='sun'> sun</div>
 )
