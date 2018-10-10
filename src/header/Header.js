@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
 import './Header.scss'
 
 const authenticatedOptions = (
@@ -24,14 +23,17 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <header className="main-header">
-    <h1>Weather or Not?</h1>
-    <nav>
-      { user && <span>Welcome, {user.email}</span>}
-      { user ? authenticatedOptions : unauthenticatedOptions }
-      { alwaysOptions }
-    </nav>
-  </header>
+  <div className='header-flex-box'>
+    <header className="main-header">
+      <img className='logo' src={require('./weather-or-not-logo.png')}/>
+      <nav>
+        { user && <span>Welcome, {user.email}</span>}
+        { user ? authenticatedOptions : unauthenticatedOptions }
+        { alwaysOptions }
+      </nav>
+    </header>
+    <hr/>
+  </div>
 )
 
 export default Header

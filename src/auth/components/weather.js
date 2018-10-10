@@ -15,9 +15,9 @@ class TheWeather extends Component {
   }
 
   async  componentDidMount() {
-    const key = process.env.REACT_APP_DARK_SKY_KEY
-    const response = await axios.get(`https://api.darksky.net/forecast/${key}/42.3601,-71.0589`)
-    this.setState({forecast: response.data.daily.data})
+    const response = await axios.get()
+    console.log(respone)
+    this.setState({forecast: response})
   }
 
 

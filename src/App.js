@@ -8,7 +8,8 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
-import TheWeather from './auth/components/weather.js'
+import Homepage from './homepage/homepage'
+
 class App extends Component {
   constructor () {
     super()
@@ -16,14 +17,10 @@ class App extends Component {
     this.state = {
       user: null,
       flashMessage: '',
-      flashType: null,
-      weatherComponent: false
+      flashType: null
     }
   }
   // function to trigger getting a forecast when the button is clicked
-  getWeather = () => {
-    this.setState({weatherComponent: !this.state.weatherComponent})
-  }
 
 
   setUser = user => this.setState({ user })
@@ -45,23 +42,23 @@ class App extends Component {
     return (
       <React.Fragment>
         <Header user={user} />
+        <Homepage />
         {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
-
+        {/* these are all routes */}
         <main className="container">
-          <Route path='/sign-up' render={() => (
+
+          <Route exact path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
           )} />
-          <Route path='/sign-in' render={() => (
+          <Route exact path='/sign-in' render={() => (
             <SignIn flash={this.flash} setUser={this.setUser} />
           )} />
-          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
+          <AuthenticatedRoute user={user} exact path='/sign-out' render={() => (
             <SignOut flash={this.flash} clearUser={this.clearUser} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/change-password' render={() => (
+          <AuthenticatedRoute user={user} exact path='/change-password' render={() => (
             <ChangePassword flash={this.flash} user={user} />
           )} />
-          <button onClick={this.getWeather}> get weather </button>
-          {this.state.weatherComponent ? <TheWeather /> : null}
         </main>
       </React.Fragment>
     )

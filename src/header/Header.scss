@@ -1,17 +1,29 @@
 $charcoal: #bbb;
 
+hr {
+  width: 60%;
+  float: right;
+}
 .main-header {
   align-items: center;
-  border-bottom: 1px solid $charcoal;
+  // border-bottom: 1px solid $charcoal;
   display: flex;
-  height: 100px;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: -10px;
   padding: 0 20px;
+
 
   a,
   span {
     font-size: 1.2em;
     margin: 0 15px;
   }
+}
+.logo {
+  margin-top: 50px;
+  height: 150px;
+  width: 150px;
 }
 
 .main-header > nav {
