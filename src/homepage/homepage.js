@@ -2,6 +2,8 @@ import React from 'react'
 import './homepage.scss'
 import axios from 'axios'
 import foreCastIndex from './homepage_api.js'
+import {Umbrella, QuestionMark, AllClear} from './weatherImages.js'
+// import AllClear from './AllClear.js'
 
 class Homepage extends React.Component {
   constructor(){
@@ -11,10 +13,10 @@ class Homepage extends React.Component {
         'Somerville', 'Worcester','Springfield',
         'Lenox','Sturbridge'],
       usState:'MA',
-      forecast: '',
+      forecast: 'it might be raining later in the day',
       clickCounter: 0,
       selectedCity:'',
-      rainStatus: false
+      rainStatus: null
     }
   }
 
@@ -56,6 +58,16 @@ class Homepage extends React.Component {
     console.log(this.state.forecast)
   }
 
+  selectComponents = () => {
+    if (this.state.rainStatus === null) {
+      return <QuestionMark/>
+    } else if (this.state.rainStatus === true) {
+      return <Umbrella/>
+    } else{
+      return <AllClear/>
+    }
+  }
+
 
   render () {
 
@@ -65,8 +77,8 @@ class Homepage extends React.Component {
     })
 
     // toggle whether to show the question mark or the weather symbols
-    let className = 'umbrella-or-no'
-    !this.state.rainStatus ? className ='umbrella-or-no-question' : ''
+    // let className = 'umbrella-or-no'
+    // !this.state.rainStatus ? className ='umbrella-or-no-question' : ''
     //else if the length is greater than 0, check to see if the string contains 'rain'
     // if it does, give them the umbrella
 
@@ -75,7 +87,7 @@ class Homepage extends React.Component {
         <h4> Need that Umbrella? </h4>
         <div>Choose your city</div>
         <select onChange={this.handleSelect}>{cityOptions}</select>
-        <div className={className}></div>
+        <div className='weather-image-container'>{this.selectComponents()}</div>
         <form onSubmit={this.counter}><button> get forecast</button> </form>
         <p className='plug'> Sign in to save your locations <br/> and customize your glances </p>
       </div>
