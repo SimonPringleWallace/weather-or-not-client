@@ -7,16 +7,17 @@ class Homepage extends React.Component {
   constructor(){
     super()
     this.state = {
-      cities: ['Boston','Natick','Cambridge',
-        'Sommerville', 'Worcester','Springfield',
+      cities: ['Select','Boston','Natick','Cambridge',
+        'Somerville', 'Worcester','Springfield',
         'Lenox','Sturbridge'],
       usState:'MA',
       forecast: [],
-      clickCounter: 0
+      clickCounter: 0,
+      selectedCity:''
     }
   }
 
-  // handle submit
+  // handle get forecast submit
   counter = (e) => {
     e.preventDefault
     // create a limit to the number of API calls to 5 in a session
@@ -28,7 +29,7 @@ class Homepage extends React.Component {
       // then it should be stored in state or props or whatever and used to make the call to the api
 
       // the function that makes the api call
-      foreCastIndex(this.state.cities[1])
+      foreCastIndex(this.state.selectedCity)
         .then((response) =>response.json())
         .then((data) => {
           // increment the counter by one for the session.
@@ -37,13 +38,20 @@ class Homepage extends React.Component {
           //the first daily value(today) returned from the API call.
           this.setState({clickCounter: clicks, forecast: data.daily.data[0]})
         })
+        .then(console.log(this.state.forecast))
         .catch(error => {
           return error
         })
 
     }
-    console.log (this.state.forecast)
   }
+
+  //To handle a user selecting a city from the dropdown menu
+  handleSelect = (e) => {
+    this.setState({selectedCity: e.target.value})
+    console.log(`this.state.selected city is ${this.state.selectedCity}`)
+  }
+
 
   render () {
 
@@ -55,12 +63,14 @@ class Homepage extends React.Component {
     // toggle whether to show the question mark or the weather symbols
     let className = 'umbrella-or-no'
     this.state.forecast.length === 0 ? className ='umbrella-or-no-question' : ''
+    //else if the length is greater than 0, check to see if the string contains 'rain'
+    // if it does, give them the umbrella
 
     return (
       <div className="homepage-flex">
         <h4> Need that Umbrella? </h4>
         <div>Choose your city</div>
-        <select>{cityOptions}</select>
+        <select onChange={this.handleSelect}>{cityOptions}</select>
         <div className={className}></div>
         <form onSubmit={this.counter}><button> get forecast</button> </form>
         <p className='plug'> Sign in to save your locations <br/> and customize your glances </p>
