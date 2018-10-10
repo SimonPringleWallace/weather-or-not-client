@@ -1,7 +1,7 @@
 import React from 'react'
 import './homepage.scss'
 import axios from 'axios'
-import foreCastIndex from './homepage_api.js'
+import {foreCastIndex} from './homepage_api.js'
 import {Umbrella, QuestionMark, AllClear, PleaseSignIn} from './weatherImages.js'
 // import AllClear from './AllClear.js'
 
@@ -52,7 +52,7 @@ class Homepage extends React.Component {
     await this.setState({selectedCity: e.target.value})
     console.log(`this.state.selected city is ${this.state.selectedCity}`)
     // set response equal to result of the api call
-    let response = await foreCastIndex(this.state.selectedCity)
+    let response = await foreCastIndex(this.state.selectedCity, this.state.usState)
     //convert response to json
     response = await response.json()
     //the first daily value(today) returned from the API call.
