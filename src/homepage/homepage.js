@@ -2,31 +2,30 @@ import React from 'react'
 import './homepage.scss'
 import axios from 'axios'
 import foreCastIndex from './homepage_api.js'
-import {Umbrella, QuestionMark, AllClear} from './weatherImages.js'
+import {Umbrella, QuestionMark, AllClear, PleaseSignIn} from './weatherImages.js'
 // import AllClear from './AllClear.js'
 
 class Homepage extends React.Component {
-  constructor() { 
+  constructor() {
     super()
     this.state = {
-      cities: ['Select','Boston','Natick','Cambridge',
+      cities: ['Select','Tampa','Natick','Cambridge',
         'Somerville', 'Worcester','Springfield',
         'Lenox','Sturbridge'],
       usState:'MA',
-      forecast: null,
+      forecast: '',
       clickCounter: 0,
       selectedCity:'',
       rainStatus: null
     }
   }
 
+
   // handle get forecast submit
   counter = async (e) => {
     e.preventDefault
     // create a limit to the number of API calls to 5 in a session
-    if (this.state.clickCounter >= 8) {
-      console.log('no more clicks until you sign in')
-    }else {
+    if (this.state.clickCounter <= 8) {
       // check to make sure that the user has selected a location for forecast
       if (this.state.forecast) {
         // increment the click counter by one for the session to prevent spamming
@@ -44,6 +43,7 @@ class Homepage extends React.Component {
         }
       }
     }
+    console.log(this.state.clickCounter)
   }
 
 
@@ -58,18 +58,22 @@ class Homepage extends React.Component {
     //the first daily value(today) returned from the API call.
     this.setState({forecast: response.daily.data[0].summary})
     console.log(this.state.forecast)
+    console.log(this.state.forecast)
   }
 
   selectComponents = () => {
-    if (this.state.rainStatus === null) {
-      return <QuestionMark/>
-    } else if (this.state.rainStatus === true) {
-      return <Umbrella/>
-    } else{
-      return <AllClear/>
+    if (this.state.clickCounter <= 7) {
+      if (this.state.rainStatus === null) {
+        return <QuestionMark/>
+      } else if (this.state.rainStatus === true) {
+        return <Umbrella/>
+      } else{
+        return <AllClear/>
+      }
+    }else{
+      return <PleaseSignIn />
     }
   }
-
 
   render () {
 
