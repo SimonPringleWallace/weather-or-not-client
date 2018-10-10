@@ -6,7 +6,7 @@ import {Umbrella, QuestionMark, AllClear} from './weatherImages.js'
 // import AllClear from './AllClear.js'
 
 class Homepage extends React.Component {
-  constructor(){
+  constructor() { 
     super()
     this.state = {
       cities: ['Select','Boston','Natick','Cambridge',

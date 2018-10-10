@@ -9,6 +9,7 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import Homepage from './homepage/homepage'
+import UserHomepage from './homepage/userhomepage'
 
 class App extends Component {
   constructor () {
@@ -42,9 +43,6 @@ class App extends Component {
     return (
       <React.Fragment>
         <Header user={user} />
-        <Homepage />
-        {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
-        {/* these are all routes */}
         <main className="container">
 
           <Route exact path='/sign-up' render={() => (
@@ -60,6 +58,12 @@ class App extends Component {
             <ChangePassword flash={this.flash} user={user} />
           )} />
         </main>
+        <AuthenticatedRoute user={user} path='/signed-in' render={() => (
+          <UserHomepage flash={this.flash} user={user} /> )} />
+
+        <Route exact path='/' component={Homepage}/>
+        {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
+        {/* these are all routes */}
       </React.Fragment>
     )
   }
