@@ -1,5 +1,7 @@
 import React from 'react'
 import './homepage.scss'
+import axios from 'axios'
+import foreCastIndex from './homepage_api.js'
 
 class Homepage extends React.Component {
   constructor(){
@@ -15,13 +17,29 @@ class Homepage extends React.Component {
   }
 
   // handle submit and also create a limit to the number of API calls in a session
-  counter = () => {
-    event.preventDefault
-    if (this.state.clickCounter === 20) {
+  counter = (e) => {
+    e.preventDefault
+    if (this.state.clickCounter === 5) {
       console.log('no more clicks until you sign in')
     }else {
-      //the function that makes the api call
-      console.log(`clicked ${this.state.clickCounter}`)
+
+      // have to figure out how to access the value of the item selected from the drop down
+      // then it should be stored in state or props or whatever and used to make the call to the api
+
+      // the function that makes the api call
+      foreCastIndex(this.state.cities[1])
+        .then((response) =>response.json())
+        .then((data) => {
+          console.log(data)
+        })
+        .catch(error => {
+          return error
+        })
+      // .then(console.log(data))
+
+
+      // this.setState({forecast: response})
+      // console.log(`clicked ${this.state.clickCounter}`)
       const clicks = this.state.clickCounter + 1
       this.setState({clickCounter: clicks})
     }
@@ -44,7 +62,7 @@ class Homepage extends React.Component {
         <div>Choose your city</div>
         <select>{cityOptions}</select>
         <div className={className}></div>
-        <button onClick={this.counter}> get forecast </button>
+        <form onSubmit={this.counter}><button> get forecast</button> </form>
         <p className='plug'> Sign in to save your locations <br/> and customize your glances </p>
       </div>
     )
