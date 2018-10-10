@@ -1,19 +1,21 @@
-.weatherComponent {
-}
+
 .umbrella {
-  height:150px;
-  width:150px;
-  background-image: url('./umbrella.png');
+  height: 150px;
+  width: 150px;
+  background-image: url('./images/umbrella.png');
   background-size: cover;
 }
 
 .question {
-  height:150px;
-  width:150px;
-  background-image: url('./question.jpg');
-  background-size:cover;
+  height: 150px;
+  width: 150px;
+  background-image: url('./images/question.jpg');
+  background-size: cover;
 }
 
 .sun {
-
+  height: 150px;
+  width: 150px;
+  background-image: url('./images/sun.png');
+  background-size: cover;
 }

@@ -13,7 +13,7 @@ class Homepage extends React.Component {
         'Somerville', 'Worcester','Springfield',
         'Lenox','Sturbridge'],
       usState:'MA',
-      forecast: '',
+      forecast: null,
       clickCounter: 0,
       selectedCity:'',
       rainStatus: null
@@ -27,20 +27,22 @@ class Homepage extends React.Component {
     if (this.state.clickCounter >= 8) {
       console.log('no more clicks until you sign in')
     }else {
-      // increment the click counter by one for the session to prevent spamming
-      const clicks = this.state.clickCounter + 1
-      this.setState({clickCounter: clicks})
-      // transform forecast into lowercase and then a string
-      const words = await this.state.forecast.toLowerCase().split(' ')
-      if (words.indexOf('rain') >= 0){
-        this.setState({rainStatus: true})
-      }else if (words.indexOf('raining') >= 0){
-        this.setState({rainStatus: true})
-      }else{
-        this.setState({rainStatus: false})
+      // check to make sure that the user has selected a location for forecast
+      if (this.state.forecast) {
+        // increment the click counter by one for the session to prevent spamming
+        const clicks = this.state.clickCounter + 1
+        this.setState({clickCounter: clicks})
+        // transform forecast into lowercase and then a string
+        const words = await this.state.forecast.toLowerCase().split(' ')
+        // search for the word 'rain' or 'raining'
+        if (words.indexOf('rain') >= 0){
+          this.setState({rainStatus: true})
+        }else if (words.indexOf('raining') >= 0){
+          this.setState({rainStatus: true})
+        }else{
+          this.setState({rainStatus: false})
+        }
       }
-      console.log(this.state.forecast)
-      console.log(this.state.rainStatus)
     }
   }
 

@@ -8,5 +8,5 @@ export const QuestionMark = () => (
   <div className='question'></div>
 )
 export const AllClear = () => (
-  <div className='sun'> sun</div>
+  <div className='sun'></div>
 )
