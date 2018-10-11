@@ -74,21 +74,10 @@ class Homepage extends React.Component {
 
   render () {
 
-    // generate options for the drop down menu
-    const cityOptions = cities.map(city => {
-      return <option key={city} value={city}>{city}</option>
-    })
-
-    // toggle whether to show the question mark or the weather symbols
-    // let className = 'umbrella-or-no'
-    // !this.state.rainStatus ? className ='umbrella-or-no-question' : ''
-    //else if the length is greater than 0, check to see if the string contains 'rain'
-    // if it does, give them the umbrella
-
     return (
       <div className="homepage-flex">
         <h4> Need that Umbrella? </h4>
-        <div>Choose your city</div>
+        <div>Choose your city to <br/> find out</div>
         <select onChange={this.handleSelect}>{cityOptions}</select>
         <div className='weather-image-container'>{this.selectComponents()}</div>
         <form onSubmit={this.counter}><button> get forecast</button> </form>

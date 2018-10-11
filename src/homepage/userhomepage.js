@@ -3,7 +3,7 @@ import './homepage.scss'
 import axios from 'axios'
 import {getLocations, apiCreateLocation, apiDestroyLocation} from './homepage_api.js'
 import {Umbrella, QuestionMark, AllClear} from './weatherImages.js'
-import {cities, cityOptions, handleSelec} from './citieshandling.js'
+import {cities, cityOptions} from './citieshandling.js'
 import LocationCard from './locationcard.js'
 import './userhomepage.scss'
 // import AllClear from './AllClear.js'
@@ -41,7 +41,9 @@ class UserHomepage extends React.Component {
   }
 
   handleSelect = async (e) => {
+    const props = e.target.getAttribute('longitude')
     await this.setState({selectedCity: e.target.value})
+    console.log(props)
   }
 
   destroyLocation = async (id) => {

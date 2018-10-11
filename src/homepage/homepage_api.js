@@ -41,8 +41,8 @@ export const apiCreateLocation = (user, state) => {
       locations: {
         city: state.selectedCity,
         state: state.usState,
-        latitude: '42.3601',
-        longitude: '-71.0589° W',
+        latitude: null,
+        longitude: null,
         user_id: user.id
       }
     })
