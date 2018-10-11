@@ -1,7 +1,7 @@
 import React from 'react'
 import './homepage.scss'
 import axios from 'axios'
-import {getLocations, apiCreateLocation, apiDestroyLocation} from './homepage_api.js'
+import {foreCastIndex, getLocations, apiCreateLocation, apiDestroyLocation} from './homepage_api.js'
 import {Umbrella, QuestionMark, AllClear} from './weatherImages.js'
 import {cities, cityOptions} from './citieshandling.js'
 import LocationCard from './locationcard.js'
@@ -60,7 +60,6 @@ class UserHomepage extends React.Component {
     const response = await apiDestroyLocation(this.props.user, id)
       .then(async(response) => {
         if (response.ok) {
-          console.log(response.ok)
           locations.splice(index, 1)
           this.setState({locations: locations})
         }else {
@@ -69,6 +68,51 @@ class UserHomepage extends React.Component {
       })
       .catch(() => {this.setState({destroyError: true})})
   }
+
+   getLocationForecast = async (city) => {
+     // create a limit to the number of API calls to 5 in a session
+     const usState = 'MA'
+     const response = await foreCastIndex(city, usState)
+       .then(async(response) => {
+         if (response.ok) {
+           this.setState({error: false})
+           console.log(this.state.error)
+           response = await response.json()
+           //the first daily value(today) returned from the API call.
+           await this.setState({forecast: response.daily.data[0].summary})
+           console.log(this.state.forecast)
+           // split the summary into individual words for analyzing
+           const words = await this.state.forecast.toLowerCase().split(' ')
+           // search for the word 'rain' or 'raining'
+           if (words.indexOf('rain') >= 0){
+             this.setState({rainStatus: true})
+           }else if (words.indexOf('raining') >= 0){
+             this.setState({rainStatus: true})
+           }else{
+             this.setState({rainStatus: false})
+           }
+         }else{
+           this.setState({error: true})
+         }
+       })
+       .catch(() => {this.setState({error: true})})
+   }
+
+     selectComponents = () => {
+       // if the user hasn't been spamming the click button
+       if (this.state.clickCounter <= 7) {
+       // if there hasn't been a forecast made yet
+         if (this.state.rainStatus === null) {
+           return <QuestionMark/>
+         // if there will be rain
+         } else if (this.state.rainStatus === true) {
+           return <Umbrella/>
+         } else{
+         //if there won't be rain
+           return <AllClear/>
+         }
+       }
+     }
 
   errorMessage = () => {
     if (this.state.locationError) {
@@ -90,12 +134,13 @@ class UserHomepage extends React.Component {
         <button onClick={this.createLocation}> Track it!</button>
         {this.state.locations.map(location => (
           <LocationCard
+            getForecast = {this.getLocationForecast.bind(this)}
             onDelete={this.destroyLocation.bind(this)}
             key={location.id}
             user={this.props.user}
             id={location.id}
             city={location.city}
-            state={location.state}
+            usState={location.state}
             longitude={location.longitude}
             latitude={location.latitude}
           />
