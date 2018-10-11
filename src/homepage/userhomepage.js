@@ -12,8 +12,9 @@ class UserHomepage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      locations:[],
-      usState: 'MA'
+      locations: [],
+      usState: 'MA',
+      rainStatus: null
     }
   }
   // when component mounts
@@ -80,7 +81,6 @@ class UserHomepage extends React.Component {
            response = await response.json()
            //the first daily value(today) returned from the API call.
            await this.setState({forecast: response.daily.data[0].summary})
-           console.log(this.state.forecast)
            // split the summary into individual words for analyzing
            const words = await this.state.forecast.toLowerCase().split(' ')
            // search for the word 'rain' or 'raining'
@@ -99,20 +99,19 @@ class UserHomepage extends React.Component {
    }
 
      selectComponents = () => {
-       // if the user hasn't been spamming the click button
-       if (this.state.clickCounter <= 7) {
+       console.log(this.state.rainStatus)
        // if there hasn't been a forecast made yet
-         if (this.state.rainStatus === null) {
-           return <QuestionMark/>
-         // if there will be rain
-         } else if (this.state.rainStatus === true) {
+       if (this.state.rainStatus !== null) {
+         if (this.state.rainStatus){
            return <Umbrella/>
-         } else{
-         //if there won't be rain
+         } else if(!this.state.rainStatus)
            return <AllClear/>
-         }
        }
      }
+     //returns the sun when the page loads now its backwards...
+
+
+
 
   errorMessage = () => {
     if (this.state.locationError) {
@@ -132,19 +131,22 @@ class UserHomepage extends React.Component {
         <div>Track a new location</div>
         <select onChange={this.handleSelect}>{cityOptions}</select>
         <button onClick={this.createLocation}> Track it!</button>
-        {this.state.locations.map(location => (
-          <LocationCard
-            getForecast = {this.getLocationForecast.bind(this)}
-            onDelete={this.destroyLocation.bind(this)}
-            key={location.id}
-            user={this.props.user}
-            id={location.id}
-            city={location.city}
-            usState={location.state}
-            longitude={location.longitude}
-            latitude={location.latitude}
-          />
-        ))}
+        <div className='weather-prediction'>{this.selectComponents()}</div>
+        <div className='card-flex'>
+          {this.state.locations.map(location => (
+            <LocationCard
+              getForecast = {this.getLocationForecast.bind(this)}
+              onDelete={this.destroyLocation.bind(this)}
+              key={location.id}
+              user={this.props.user}
+              id={location.id}
+              city={location.city}
+              usState={location.state}
+              longitude={location.longitude}
+              latitude={location.latitude}
+            />
+          ))}
+        </div>
       </div>
     )
   }

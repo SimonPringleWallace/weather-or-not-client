@@ -11,6 +11,17 @@
   width:500px;
   height:30px;
 }
+.card-flex{
+  display:flex;
+  flex-direction: row;
+  width:100%
+}
+
+.weather-prediction {
+  margin-top:10px;
+  height:150px;
+  width:150px;
+}
 
 button {
   border-radius: 8px;

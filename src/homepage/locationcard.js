@@ -1,5 +1,6 @@
 import React from 'react'
 import {destroyLocation} from './homepage_api.js'
+import './locationcard.scss'
 
 class LocationCard extends React.Component {
   destroyLocation(id) {
