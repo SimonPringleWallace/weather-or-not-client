@@ -54,8 +54,6 @@ class Homepage extends React.Component {
     response = await response.json()
     //the first daily value(today) returned from the API call.
     this.setState({forecast: response.daily.data[0].summary})
-    console.log(this.state.forecast)
-    console.log(this.state.forecast)
   }
 
   selectComponents = () => {

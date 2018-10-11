@@ -2,10 +2,7 @@ import apiUrl from './../apiConfig.js'
 
 export const foreCastIndex = (city, state) => {
   return fetch(`${apiUrl}/forecast/${city},${state}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    }
+    method: 'GET'
   })
 }
 
