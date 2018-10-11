@@ -19,27 +19,35 @@ class UserHomepage extends React.Component {
   // when component mounts
   componentDidMount = async () => {
     //set response to equal API response
-    let response = await getLocations(this.props.user)
-    //parse this to JSON
-    response = await response.json()
-    //set the state to equal the response
-    await this.setState({locations: response.locations})
-  }
-
-  userHasLocations = () => {
-    if (this.state.locations.length === 0 ){
-      return 'no locations yet'
-    }
+    const response = await getLocations(this.props.user)
+      .then(async(response) => {
+        if (response.ok) {
+          console.log('response is ok')
+          //parse this to JSON
+          response = await response.json()
+          //set the state to equal the response
+          await this.setState({locations: response.locations})
+        } else {
+          this.setState(this.setState({locationError: true}))
+        }
+      })
+      .catch(() => {this.setState({locationError: true})})
   }
 
   createLocation = async () => {
     const locations = this.state.locations
-    let response = await apiCreateLocation(this.props.user, this.state)
-    response = await response.json()
-    locations.push(response.location)
-    this.setState({locations: locations})
+    const response = await apiCreateLocation(this.props.user, this.state)
+      .then(async(response) => {
+        if (response.ok) {
+          response = await response.json()
+          locations.push(response.location)
+          this.setState({locations: locations})
+        }else {
+          this.setState(this.setState({createError: true}))
+        }
+      })
+      .catch(() => {this.setState({locationError: true})})
   }
-
   handleSelect = async (e) => {
     const props = e.target.getAttribute('longitude')
     await this.setState({selectedCity: e.target.value})
@@ -47,21 +55,36 @@ class UserHomepage extends React.Component {
   }
 
   destroyLocation = async (id) => {
-    console.log('hi!')
     const locations = this.state.locations
-    console.log(this)
     const index = locations.findIndex(location => location.id === id)
     const response = await apiDestroyLocation(this.props.user, id)
-    console.log(response.ok)
-    locations.splice(index, 1)
-    this.setState({locations: locations})
+      .then(async(response) => {
+        if (response.ok) {
+          console.log(response.ok)
+          locations.splice(index, 1)
+          this.setState({locations: locations})
+        }else {
+          this.setState(this.setState({destroyError: true}))
+        }
+      })
+      .catch(() => {this.setState({destroyError: true})})
+  }
+
+  errorMessage = () => {
+    if (this.state.locationError) {
+      return 'you might have locations but we couldn\'t get them, please try again'
+    }else if (this.state.createError) {
+      return 'we couldn\'t create that location please try again'
+    } else if (this.state.destroyError) {
+      return 'we couldn\'t delete that location, you\'re stuck with it'
+    }
   }
 
   render () {
 
     return (
       <div className="userhomepage-flex">
-        <div>{this.userHasLocations()}</div>
+        <div className='errordiv'>{this.errorMessage()}</div>
         <div>Track a new location</div>
         <select onChange={this.handleSelect}>{cityOptions}</select>
         <button onClick={this.createLocation}> Track it!</button>
