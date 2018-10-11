@@ -42,6 +42,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
+        {/* these are all routes */}
         <Header user={user} />
         <main className="container">
 
@@ -63,7 +64,6 @@ class App extends Component {
 
         <Route exact path='/' component={Homepage}/>
         {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
-        {/* these are all routes */}
       </React.Fragment>
     )
   }
