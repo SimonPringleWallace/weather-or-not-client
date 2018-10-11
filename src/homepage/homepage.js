@@ -52,6 +52,7 @@ class Homepage extends React.Component {
               this.setState({error: true})
             }
           })
+          .catch(() => {this.setState({error: true})})
         //convert response to json
       }else{
         // TODO Handle error
