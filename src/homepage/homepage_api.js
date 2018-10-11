@@ -1,5 +1,4 @@
 import apiUrl from './../apiConfig.js'
-import Geocode from 'react-geocode'
 
 export const foreCastIndex = (city, state) => {
   return fetch(`${apiUrl}/forecast/${city},${state}`, {
