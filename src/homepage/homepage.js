@@ -2,6 +2,7 @@ import React from 'react'
 import './homepage.scss'
 import axios from 'axios'
 import {foreCastIndex} from './homepage_api.js'
+import {cities, cityOptions} from './citieshandling.js'
 import {Umbrella, QuestionMark, AllClear, PleaseSignIn} from './weatherImages.js'
 // import AllClear from './AllClear.js'
 
@@ -9,9 +10,6 @@ class Homepage extends React.Component {
   constructor() {
     super()
     this.state = {
-      cities: ['Select','Tampa','Natick','Cambridge',
-        'Somerville', 'Worcester','Springfield',
-        'Lenox','Sturbridge'],
       usState:'MA',
       forecast: '',
       clickCounter: 0,
@@ -43,7 +41,6 @@ class Homepage extends React.Component {
         }
       }
     }
-    console.log(this.state.clickCounter)
   }
 
 
@@ -78,7 +75,7 @@ class Homepage extends React.Component {
   render () {
 
     // generate options for the drop down menu
-    const cityOptions = this.state.cities.map(city => {
+    const cityOptions = cities.map(city => {
       return <option key={city} value={city}>{city}</option>
     })
 
