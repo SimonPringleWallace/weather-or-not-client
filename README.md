@@ -31,6 +31,8 @@
     which datasets are the most accurate. Currently, Weather or Not uses the
     dailing summary to determine the forecast, however, this may change.
 
+   -A search bar rather than a drop down for searching for a city or state
+
 # Wireframes and User Stories
 
  - [Wireframes 1](./public/WON_homepage.png)
@@ -61,3 +63,4 @@ See the distilled weather report for any city in the country.
 -Javascript
 -Git, GitHub and Git Hub Pages
 -SCSS
+-HashRouter
