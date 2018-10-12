@@ -22,7 +22,7 @@ class Homepage extends React.Component {
 
   // handle get forecast submit
   counter = async (e) => {
-    e.preventDefault
+    e.preventDefault()
     // create a limit to the number of API calls to 5 in a session
     if (this.state.clickCounter <= 8) {
       // check to make sure that the user has selected a location for forecast
