@@ -56,7 +56,7 @@ V2
 A user can…
 - Add preferences to their account (temp when they would wear a sweater, temp when they’d wear  t-shirt, etc.) and be provided information based on these preferences as relates to the weather.
 
-See the distilled weather report for any city in the country.
+- See the distilled weather report for any city in the country.
 
 # Technologies Used
 
