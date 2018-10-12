@@ -57,16 +57,15 @@ A user can…
 - See the distilled weather report for any city in the country.
 
 # Technologies Used
-
--React.JS
--Javascript
--Git, GitHub and Git Hub Pages
--SCSS
--HashRouter
+- React.JS
+- Javascript
+- Git, GitHub and Git Hub Pages
+- SCSS
+- HashRouter
 
 # Installation
 - To access the code for this application please fork and clone this Repository
   or download the files.
   From the command line run:
 - ```npm install``` to install all dependencies
-- ```npm start``` Start a server on your local host by running 
+- ```npm start``` Start a server on your local host by running
