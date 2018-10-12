@@ -13,7 +13,7 @@
   by Dark Sky. For this client side of the appliation, this involved passing
   functions as props in order to gather the necessary information from
   child components. Much of the heavy lifting however, existed in the
-  weather-or-not-api itself, the deployed version of which may be reached[here](https://weather-or-not-api.herokuapp.com).
+  weather-or-not-api itself, the deployed version of which may be reached [here](https://weather-or-not-api.herokuapp.com).
 
 # Future Work
   With a basic proof-of-concept completed, work will begin next on refactoring
@@ -39,9 +39,7 @@
  - [Wireframes 2](./public/WON_signed_in_view.png)
  - ![Weather or Not](./public/WON_Screenshot.png)
 
- - User Stories:
-
-V1
+ # User Stories
 A User Can…
  - Perform standard user authentication actions, included changing their password
  - Can select the distilled weather report from any Massachusetts city.
