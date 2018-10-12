@@ -65,3 +65,9 @@ See the distilled weather report for any city in the country.
 -Git, GitHub and Git Hub Pages
 -SCSS
 -HashRouter
+
+# Installation
+- To access the code for this application please fork and clone this Repository
+  or download the files.
+- Run ```npm install``` to install all dependencies
+- Start a server on your local host by running ```npm start```
