@@ -14,7 +14,7 @@ class UserHomepage extends React.Component {
     this.state = {
       locations: [],
       usState: 'MA',
-      rainStatus: null
+      rainStatus: null,
     }
   }
   // when component mounts
@@ -29,7 +29,7 @@ class UserHomepage extends React.Component {
           //set the state to equal the response
           await this.setState({locations: response.locations})
         } else {
-          this.setState(this.setState({locationError: true}))
+          this.setState(this.setState({locationError: true, rainStatus: null}))
         }
       })
       .catch(() => {this.setState({locationError: true})})
@@ -49,10 +49,10 @@ class UserHomepage extends React.Component {
       })
       .catch(() => {this.setState({locationError: true})})
   }
+
   handleSelect = async (e) => {
-    const props = e.target.getAttribute('longitude')
     await this.setState({selectedCity: e.target.value})
-    console.log(props)
+    console.log(this.activeCity)
   }
 
   destroyLocation = async (id) => {
@@ -72,6 +72,7 @@ class UserHomepage extends React.Component {
 
    getLocationForecast = async (city) => {
      // create a limit to the number of API calls to 5 in a session
+     this.setState({activeCity: city})
      const usState = 'MA'
      const response = await foreCastIndex(city, usState)
        .then(async(response) => {
@@ -96,6 +97,7 @@ class UserHomepage extends React.Component {
          }
        })
        .catch(() => {this.setState({error: true})})
+     console.log(this.state.activeCity)
    }
 
      selectComponents = () => {
@@ -109,8 +111,6 @@ class UserHomepage extends React.Component {
        }
      }
      //returns the sun when the page loads now its backwards...
-
-
 
 
   errorMessage = () => {
@@ -131,6 +131,7 @@ class UserHomepage extends React.Component {
         <div>Track a new location</div>
         <select onChange={this.handleSelect}>{cityOptions}</select>
         <button onClick={this.createLocation}> Track it!</button>
+        <div>{this.state.activeCity}</div>
         <div className='weather-prediction'>{this.selectComponents()}</div>
         <div className='card-flex'>
           {this.state.locations.map(location => (

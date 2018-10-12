@@ -62,6 +62,7 @@ class Homepage extends React.Component {
   handleSelect = async (e) => {
     // set state equal to result of the api call
     await this.setState({selectedCity: e.target.value})
+    this.setState({rainStatus: null})
   }
 
   selectComponents = () => {
