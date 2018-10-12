@@ -67,5 +67,6 @@ A user can…
 # Installation
 - To access the code for this application please fork and clone this Repository
   or download the files.
-- Run ```npm install``` to install all dependencies
-- Start a server on your local host by running ```npm start```
+  From the command line run:
+- ```npm install``` to install all dependencies
+- ```npm start``` Start a server on your local host by running 
