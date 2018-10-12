@@ -23,7 +23,6 @@ class UserHomepage extends React.Component {
     const response = await getLocations(this.props.user)
       .then(async(response) => {
         if (response.ok) {
-          console.log('response is ok')
           //parse this to JSON
           response = await response.json()
           //set the state to equal the response
@@ -52,7 +51,6 @@ class UserHomepage extends React.Component {
 
   handleSelect = async (e) => {
     await this.setState({selectedCity: e.target.value})
-    console.log(this.activeCity)
   }
 
   destroyLocation = async (id) => {
@@ -78,7 +76,6 @@ class UserHomepage extends React.Component {
        .then(async(response) => {
          if (response.ok) {
            this.setState({error: false})
-           console.log(this.state.error)
            response = await response.json()
            //the first daily value(today) returned from the API call.
            await this.setState({forecast: response.daily.data[0].summary})
@@ -97,11 +94,9 @@ class UserHomepage extends React.Component {
          }
        })
        .catch(() => {this.setState({error: true})})
-     console.log(this.state.activeCity)
    }
 
      selectComponents = () => {
-       console.log(this.state.rainStatus)
        // if there hasn't been a forecast made yet
        if (this.state.rainStatus !== null) {
          if (this.state.rainStatus){

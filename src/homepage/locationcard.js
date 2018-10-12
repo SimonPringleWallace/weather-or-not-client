@@ -19,6 +19,7 @@ class LocationCard extends React.Component {
             <p>{this.props.usState}</p>
             <p>{this.props.longitude}</p>
             <p>{this.props.latitude}</p>
+            <p>click for the weather</p>
           </div>
         </a>
         <button value={this.props.id} onClick={this.destroyLocation.bind(this, this.props.id)}>Destroy!!!</button>
