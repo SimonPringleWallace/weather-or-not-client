@@ -15,19 +15,19 @@ class LocationCard extends React.Component {
 
   render () {
     return (
-      <Card
-        hoverable
-        style={{ width: 300}}
-        bodyStyle={{width: 300}}
-        cover={<img alt="example" src={require('../header/weather-or-not-logo.png')} />}
-        actions={[<Icon key={this.props.id} type="setting" />, <Icon key={this.props.id + 1} type="edit" />, <Icon key={this.props.id + 2} type="ellipsis" />]}
-      >
-        <Meta
-          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title={`${this.props.city}, ${this.props.state}`}
-          description="This is the description"
-        />
-      </Card>
+      <div className='location-card'>
+        <Card
+          bodyStyle={{width: 300}}
+          cover={<img alt="example" src={require('../header/weather-or-not-logo.png')} />}
+          actions={[<Icon key={this.props.id} onClick={this.destroyLocation.bind(this, this.props.id)} type="delete" />, <Icon key={this.props.id + 1} type="edit" />, <Icon key={this.props.id + 2} type="ellipsis" />]}
+        >
+          <Meta
+            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+            title={`${this.props.city}, ${this.props.usState}`}
+            description="This is the description"
+          />
+        </Card>
+      </div>
       /* <div className='location-card-flex'>
         <a className='getForecast' onClick={this.getLocationForecast.bind(this, this.props.city)}>
           <div>
