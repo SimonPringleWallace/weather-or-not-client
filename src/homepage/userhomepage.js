@@ -28,6 +28,7 @@ class UserHomepage extends React.Component {
           //set the state to equal the response
           await this.setState({locations: response.locations})
         } else {
+          // if response.ok is false
           this.setState(this.setState({locationError: true, rainStatus: null}))
         }
       })
@@ -35,12 +36,18 @@ class UserHomepage extends React.Component {
   }
 
   createLocation = async () => {
+    // stash the current state's locations in a constant
     const locations = this.state.locations
+    // make the request to creat the location
     const response = await apiCreateLocation(this.props.user, this.state)
       .then(async(response) => {
         if (response.ok) {
           response = await response.json()
+          // add the location in the response to the array of locations
+          // that was captured from state
           locations.push(response.location)
+          // reset the state to include the location that was create
+          //meaning that the new location will instantly appear on the screen
           this.setState({locations: locations})
         }else {
           this.setState(this.setState({createError: true}))
@@ -77,14 +84,13 @@ class UserHomepage extends React.Component {
          if (response.ok) {
            this.setState({error: false})
            response = await response.json()
-           //the first daily value(today) returned from the API call.
-           await this.setState({forecast: response.daily.data[0].summary})
-           // split the summary into individual words for analyzing
-           const words = await this.state.forecast.toLowerCase().split(' ')
-           // search for the word 'rain' or 'raining'
-           if (words.indexOf('rain') >= 0){
-             this.setState({rainStatus: true})
-           }else if (words.indexOf('raining') >= 0){
+           /* set the state to the probablity of percipitation and the
+           barometric preassure of the first daily value(today) returned from
+           the API call. */
+           await this.setState({forecast: [response.daily.data[0].precipProbability, response.daily.data[0].pressure]})
+           /* check to see if the chance of percipitation is greater than 50%
+            or the mb of pressure is below 1009*/
+           if (this.state.forecast[0] >= .5 || this.state.forecast[1] < 1009){
              this.setState({rainStatus: true})
            }else{
              this.setState({rainStatus: false})
