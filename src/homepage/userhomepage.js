@@ -61,8 +61,11 @@ class UserHomepage extends React.Component {
   }
 
   destroyLocation = async (id) => {
+    // stash the current state's locations in a constant
     const locations = this.state.locations
+    // make the request to creat the location
     const index = locations.findIndex(location => location.id === id)
+    //declare the index within const locations of the location to be deleted
     const response = await apiDestroyLocation(this.props.user, id)
       .then(async(response) => {
         if (response.ok) {
