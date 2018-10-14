@@ -1,12 +1,13 @@
 .location-card {
-  width:300px;
+  width:200px;
   margin: 10px;
-  transition: margin .5s;
+  transition: margin .35s;
+  display: block;
 }
 
 .location-card:hover {
-  margin-top: -10px;
-  transition: margin .5s;
+  margin-top: -2px;
+  transition: margin .35s;
 }
 
 .getForecast {
