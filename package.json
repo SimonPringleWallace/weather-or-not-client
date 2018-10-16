@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.10.1",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "babel-core": "6.26.0",
@@ -53,13 +54,12 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "sh scripts/deploy.sh",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "make-standard": "eslint --fix .",
-    "nag": "eslint .",
-    "deploy": "sh scripts/deploy.sh"
+    "nag": "eslint ."
   },
   "jest": {
     "collectCoverageFrom": [

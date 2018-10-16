@@ -1,7 +1,13 @@
-.location-card-flex{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.location-card {
+  width:200px;
+  margin: 10px;
+  transition: margin .35s;
+  display: block;
+}
+
+.location-card:hover {
+  margin-top: -2px;
+  transition: margin .35s;
 }
 
 .getForecast {
@@ -13,4 +19,8 @@
   width: 100px;
   margin: 0 5px;
   box-shadow: 5px 10px;
+}
+
+.card-location {
+  hoverable: true;
 }
