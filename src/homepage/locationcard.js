@@ -1,45 +1,44 @@
 import React from 'react'
 import {destroyLocation} from './homepage_api.js'
-import { DatePicker, Card, Icon, Avatar } from 'antd'
+import Flipcard from './flipcard.js'
 import './locationcard.scss'
-import 'antd/dist/antd.css'
-const { Meta } = Card
 
 class LocationCard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      flipped: false
+    }
+  }
+  // declared here but passed to userhomepage
   destroyLocation(id) {
     this.props.onDelete(id)
   }
+
+  // declared here but passed to userhomepage
   getLocationForecast(city,usState){
     this.props.getForecast(city, usState)
   }
 
+  //trigger the card clip when a card is clicked
+  flip = () => (
+    console.log('I flip!!')
+    // this.setState({flipped: !this.state.flipped})
+  )
+
   render () {
     return (
-      <div className='location-card'>
-        <Card
-          bodyStyle={{width: 200}}
-          cover={<img alt="example" src={require('../header/weather-or-not-logo.png')} />}
-          actions={[<Icon key={this.props.id} onClick={this.destroyLocation.bind(this, this.props.id)} type="delete" />, <Icon key={this.props.id + 1} type="edit" />, <Icon key={this.props.id + 2} type="ellipsis" />]}
+      <React.Fragment>
+        <Flipcard
+          flip={this.flip.bind(this)}
+          flipped={this.state.flipped}
+          id={this.props.id}
+          onDelete={this.destroyLocation.bind(this)}
+          city={this.props.city}
+          usState={this.props.usState}
         >
-          <Meta
-            title={`${this.props.city}, ${this.props.usState}`}
-            description="This is the description"
-          />
-        </Card>
-      </div>
-      /* <div className='location-card-flex'>
-        <a className='getForecast' onClick={this.getLocationForecast.bind(this, this.props.city)}>
-          <div>
-            <DatePicker>pick dates</DatePicker>
-            <p>{this.props.city}</p>
-            <p>{this.props.usState}</p>
-            <p>{this.props.longitude}</p>
-            <p>{this.props.latitude}</p>
-            <p>click for the weather</p>
-          </div>
-        </a>
-        <button value={this.props.id} onClick={this.destroyLocation.bind(this, this.props.id)}>Destroy!!!</button>
-      </div> */
+        </Flipcard>
+      </React.Fragment>
     )
   }
 }
