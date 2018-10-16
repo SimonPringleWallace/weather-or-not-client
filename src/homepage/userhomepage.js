@@ -90,13 +90,14 @@ class UserHomepage extends React.Component {
            /* set the state to the probablity of percipitation and the
            barometric preassure of the first daily value(today) returned from
            the API call. */
-           await this.setState({forecast: [response.daily.data[0].precipProbability, response.daily.data[0].pressure]})
+           await this.setState({percentPercip: response.daily.data[0].precipProbability, barometricPress: response.daily.data[0].pressure})
            /* check to see if the chance of percipitation is greater than 50%
             or the mb of pressure is below 1009*/
-           if (this.state.forecast[0] >= .5 || this.state.forecast[1] < 1009){
-             this.setState({rainStatus: true})
-           }else{
+           if (this.state.barometricPress > 1011) {
              this.setState({rainStatus: false})
+           }else{
+             (this.state.precipProbability >= .5 || this.state.barometricPress < 1009)
+             this.setState({rainStatus: true})
            }
          }else{
            this.setState({error: true})
