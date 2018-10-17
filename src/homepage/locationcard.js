@@ -26,7 +26,7 @@ class LocationCard extends React.Component {
 
   render () {
     return (
-      <React.Fragment>
+      <div className='location-card'>
         <Flipcard
           flip = {this.flip}
           flipped = {this.state.flipped}
@@ -37,7 +37,7 @@ class LocationCard extends React.Component {
           usState={this.props.usState}
         >
         </Flipcard>
-      </React.Fragment>
+      </div>
       /* <div className='location-card-flex'>
         <a className='getForecast' onClick={this.getLocationForecast.bind(this, this.props.city)}>
           <div>

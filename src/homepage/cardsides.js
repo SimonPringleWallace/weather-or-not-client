@@ -10,7 +10,8 @@ export const Front = ({city, usState, id, flip, onDelete}) => {
 
   return (
     <Card className='front'
-    // onClick={this.getLocationForecast.bind(this, this.props.city)}
+      hoverable
+      // onClick={this.getLocationForecast.bind(this, this.props.city)}
       bodyStyle={{width: 200}}
       cover={<img alt="example" src={require('../header/weather-or-not-logo.png')} onClick={flip} />}
       actions={[<Card key={id}/>, <Icon key={id} onClick={onDelete.bind(this, id)} type="delete" />, <Icon key={id + 1} type="edit" />, <Icon key={id + 2} type="ellipsis" />]}
@@ -25,6 +26,6 @@ export const Front = ({city, usState, id, flip, onDelete}) => {
 
 
 
-export const Back = () => (
-  <div className='back'>The Back!</div>
+export const Back = ({flip}) => (
+  <div className='back' onClick={flip}>The Back!</div>
 )
