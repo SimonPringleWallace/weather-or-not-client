@@ -6,30 +6,15 @@
   display: block;
 
 //
-// .location-card:hover {
-//   margin-top: -2px;
-//   transition: margin .35s;
-// }
-//
-// .getForecast {
-//   border: 2px solid black;
-//   cursor: pointer;
-//   margin-bottom: -10px;
-//   height: 140px;
-//   padding:2px;
-//   width: 100px;
-//   margin: 0 5px;
-//   box-shadow: 5px 10px;
-// }
-//
-// .card-location {
-//   hoverable: true;
-// }
+.location-card:hover {
+  margin-top: -2px;
+  transition: margin .35s;
+}
 
+.card-location {
+  hoverable: true;
+}
 
-  span {
-    color:white;
-  }
 
   >div.flipper {
     float:left;
@@ -54,8 +39,6 @@
 
     .front {
       z-index:2;
-      background:#19489E;
-
       /* front tile styles go here! */
     }
 

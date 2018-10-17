@@ -5,10 +5,26 @@ const { Meta } = Card
 import './locationcard.scss'
 
 
-export const Front = (props) => (
-  <div className='front'>The Front!</div>
-)
+export const Front = ({city, usState, id, flip, onDelete}) => {
 
-export const Back = (props) => (
+
+  return (
+    <Card className='front'
+    // onClick={this.getLocationForecast.bind(this, this.props.city)}
+      bodyStyle={{width: 200}}
+      cover={<img alt="example" src={require('../header/weather-or-not-logo.png')} onClick={flip} />}
+      actions={[<Card key={id}/>, <Icon key={id} onClick={onDelete.bind(this, id)} type="delete" />, <Icon key={id + 1} type="edit" />, <Icon key={id + 2} type="ellipsis" />]}
+    >
+      <Meta
+        title={`${city}, ${usState}`}
+        description="This is the description"
+      />
+    </Card>
+  )
+}
+
+
+
+export const Back = () => (
   <div className='back'>The Back!</div>
 )
