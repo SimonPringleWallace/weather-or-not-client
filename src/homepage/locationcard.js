@@ -1,33 +1,43 @@
 import React from 'react'
 import {destroyLocation} from './homepage_api.js'
 import { DatePicker, Card, Icon, Avatar } from 'antd'
+import Flipcard from './flipcard'
 import './locationcard.scss'
 import 'antd/dist/antd.css'
 const { Meta } = Card
 
 class LocationCard extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      flipper: false
+    }
+  }
   destroyLocation(id) {
     this.props.onDelete(id)
   }
-  getLocationForecast(city,usState){
-    this.props.getForecast(city, usState)
+  getLocationForecast(city){
+    this.props.getForecast(city)
+  }
+  flip = () => {
+    this.setState({ flipped: !this.state.flipped })
+    console.log('flip')
   }
 
   render () {
     return (
-      <div className='location-card'>
-        <Card
-          onClick={this.getLocationForecast.bind(this, this.props.city)}
-          bodyStyle={{width: 200}}
-          cover={<img alt="example" src={require('../header/weather-or-not-logo.png')} />}
-          actions={[<Card key={this.props.id} onClick={this.getLocationForecast.bind(this, this.props.city)} />, <Icon key={this.props.id} onClick={this.destroyLocation.bind(this, this.props.id)} type="delete" />, <Icon key={this.props.id + 1} type="edit" />, <Icon key={this.props.id + 2} type="ellipsis" />]}
+      <React.Fragment>
+        <Flipcard
+          flipped = {this.state.flipped}
+          onDelete = {this.destroyLocation.bind(this)}
+          getForecast = {this.getLocationForecast.bind(this)}
+          city = {this.props.city}
+          id = {this.props.id}
+          usState={this.props.usState}
         >
-          <Meta
-            title={`${this.props.city}, ${this.props.usState}`}
-            description="This is the description"
-          />
-        </Card>
-      </div>
+        </Flipcard>
+        <button onClick={this.flip}>flip</button>
+      </React.Fragment>
       /* <div className='location-card-flex'>
         <a className='getForecast' onClick={this.getLocationForecast.bind(this, this.props.city)}>
           <div>
