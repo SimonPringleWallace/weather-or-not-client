@@ -19,6 +19,7 @@ class Flipcard extends React.Component {
       <div className='location-card'>
         <div className={'flipper' + (this.props.flipped ? ' flipped' : '')}>
           <Front
+            getForecast={this.getLocationForecast.bind(this)}
             onDelete={this.destroyLocation.bind(this)}
             flip={this.props.flip}
             flipped={this.props.flipped}

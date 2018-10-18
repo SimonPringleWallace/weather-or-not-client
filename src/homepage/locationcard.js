@@ -19,9 +19,9 @@ class LocationCard extends React.Component {
   getLocationForecast(city){
     this.props.getForecast(city)
   }
+  
   flip = () => {
     this.setState({ flipped: !this.state.flipped })
-    console.log(this.state.flipped)
   }
 
   render () {

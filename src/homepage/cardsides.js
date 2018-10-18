@@ -5,7 +5,7 @@ const { Meta } = Card
 import './locationcard.scss'
 
 
-export const Front = ({city, usState, id, flip, onDelete}) => {
+export const Front = ({city, usState, id, flip, onDelete, getForecast}) => {
 
 
   return (
