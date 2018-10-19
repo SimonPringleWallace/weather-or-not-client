@@ -1,6 +1,6 @@
 import apiUrl from './../apiConfig.js'
 
-export const foreCastIndex = (city, state) => {
+export const forecastIndex = (city, state) => {
   return fetch(`${apiUrl}/forecast/${city},${state}`, {
     method: 'GET'
   })

@@ -1,10 +1,11 @@
 import React from 'react'
 import './homepage.scss'
 import axios from 'axios'
-import {foreCastIndex, getLocations, apiCreateLocation, apiDestroyLocation} from './homepage_api.js'
+import {forecastIndex, getLocations, apiCreateLocation, apiDestroyLocation} from './homepage_api.js'
 import {Umbrella, QuestionMark, AllClear} from './weatherImages.js'
 import {cities, cityOptions} from './citieshandling.js'
 import LocationCard from './locationcard.js'
+import './locationcard.scss'
 import './userhomepage.scss'
 // import AllClear from './AllClear.js'
 
@@ -78,33 +79,7 @@ class UserHomepage extends React.Component {
       .catch(() => {this.setState({destroyError: true})})
   }
 
-   getLocationForecast = async (city) => {
-     // create a limit to the number of API calls to 5 in a session
-     this.setState({activeCity: city})
-     const usState = 'MA'
-     const response = await foreCastIndex(city, usState)
-       .then(async(response) => {
-         if (response.ok) {
-           this.setState({error: false})
-           response = await response.json()
-           /* set the state to the probablity of percipitation and the
-           barometric preassure of the first daily value(today) returned from
-           the API call. */
-           await this.setState({percentPercip: response.daily.data[0].precipProbability, barometricPress: response.daily.data[0].pressure})
-           /* check to see if the chance of percipitation is greater than 50%
-            or the mb of pressure is below 1009*/
-           if (this.state.barometricPress > 1011) {
-             this.setState({rainStatus: false})
-           }else{
-             (this.state.precipProbability >= .5 || this.state.barometricPress < 1009)
-             this.setState({rainStatus: true})
-           }
-         }else{
-           this.setState({error: true})
-         }
-       })
-       .catch(() => {this.setState({error: true})})
-   }
+
 
      selectComponents = () => {
        // if there hasn't been a forecast made yet
@@ -136,12 +111,10 @@ class UserHomepage extends React.Component {
         <div>Track a new location</div>
         <select onChange={this.handleSelect}>{cityOptions}</select>
         <button onClick={this.createLocation}> Track it!</button>
-        <div>{this.state.activeCity}</div>
         <div className='weather-prediction'>{this.selectComponents()}</div>
         <div className='card-flex'>
           {this.state.locations.map(location => (
             <LocationCard
-              getForecast = {this.getLocationForecast.bind(this)}
               onDelete={this.destroyLocation.bind(this)}
               key={location.id}
               user={this.props.user}

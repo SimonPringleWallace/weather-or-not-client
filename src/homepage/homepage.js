@@ -1,7 +1,7 @@
 import React from 'react'
 import './homepage.scss'
 import axios from 'axios'
-import {foreCastIndex} from './homepage_api.js'
+import {forecastIndex} from './homepage_api.js'
 import {cities, cityOptions} from './citieshandling.js'
 import {Umbrella, QuestionMark, AllClear, PleaseSignIn} from './weatherImages.js'
 import messages from '../auth/messages.js'
@@ -31,7 +31,7 @@ class Homepage extends React.Component {
         const clicks = this.state.clickCounter + 1
         this.setState({clickCounter: clicks})
         // transform forecast into lowercase and then a string
-        const response = await foreCastIndex(this.state.selectedCity, this.state.usState)
+        const response = await forecastIndex(this.state.selectedCity, this.state.usState)
           .then(async(response) => {
             if (response.ok) {
               this.setState({error: false})
