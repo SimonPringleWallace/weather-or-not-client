@@ -11,9 +11,6 @@ class Flipcard extends React.Component {
 
     }
   }
-  // getLocationForecast(city){
-  //   this.props.getForecast(city)
-  // }
   flip(city){
     this.props.flip(city)
   }
@@ -35,8 +32,10 @@ class Flipcard extends React.Component {
             usState={this.props.usState}
           />
           <Back
-            // forcast prop passed down here
             flip={this.props.flip}
+            rainStatus={this.props.rainStatus}
+            barometricPress={this.props.barometricPress}
+            percentPercip={this.props.percentPercip}
           />
         </div>
       </div>

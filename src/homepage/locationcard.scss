@@ -4,7 +4,6 @@
   margin: 10px;
   transition: margin .35s;
   display: block;
-  background-color: green;
 
 //
 .location-card:hover {
@@ -34,7 +33,7 @@
     }
 
     .front {
-      z-index:2;
+      // z-index:2;
       /* front tile styles go here! */
     }
 

@@ -80,19 +80,6 @@ class UserHomepage extends React.Component {
   }
 
 
-
-     selectComponents = () => {
-       // if there hasn't been a forecast made yet
-       if (this.state.rainStatus !== null) {
-         if (this.state.rainStatus){
-           return <Umbrella/>
-         } else if(!this.state.rainStatus)
-           return <AllClear/>
-       }
-     }
-     //returns the sun when the page loads now its backwards...
-
-
   errorMessage = () => {
     if (this.state.locationError) {
       return 'you might have locations but we couldn\'t get them, please try again'
@@ -111,7 +98,6 @@ class UserHomepage extends React.Component {
         <div>Track a new location</div>
         <select onChange={this.handleSelect}>{cityOptions}</select>
         <button onClick={this.createLocation}> Track it!</button>
-        <div className='weather-prediction'>{this.selectComponents()}</div>
         <div className='card-flex'>
           {this.state.locations.map(location => (
             <LocationCard
