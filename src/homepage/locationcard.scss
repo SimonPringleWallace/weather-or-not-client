@@ -3,7 +3,7 @@
   height:200px;
   margin: 10px;
   transition: margin .35s;
-  display: block;
+  background-color: green;
 
 //
 .location-card:hover {
@@ -11,16 +11,13 @@
   transition: margin .35s;
 }
 
-  >div.flipper {
-    float:left;
+  .flipper {
     width:100%;
     height:100%;
     position:relative;
     transform-style: preserve-3d;
 
     .front, .back {
-      float:left;
-      display:block;
       width:100%;
       height:100%;
       backface-visibility: hidden;
@@ -28,17 +25,18 @@
       top:0;
       left:0;
       transform-style: preserve-3d;
-      transition: transform ease 500ms;
-      -webkit-transform: ease 500ms;
+      transition: transform ease 800ms;
+      -webkit-transform: ease 800ms;
     }
 
     .front {
-      // z-index:2;
+      z-index:2;
+      background-color: yellow;
       /* front tile styles go here! */
     }
 
     .back {
-      background:#9E1919;
+      background:#ffffff;
 
       /* back tile styles go here! */
     }
