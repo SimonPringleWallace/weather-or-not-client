@@ -14,8 +14,7 @@ class UserHomepage extends React.Component {
     super(props)
     this.state = {
       locations: [],
-      usState: 'MA',
-      rainStatus: null,
+      usState: 'MA'
     }
   }
   // when component mounts

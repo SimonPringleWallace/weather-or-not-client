@@ -8,7 +8,8 @@ class LocationCard extends React.Component {
   constructor() {
     super()
     this.state = {
-      flipper: false
+      flipper: false,
+      rainStatus: null
     }
   }
   destroyLocation(id) {

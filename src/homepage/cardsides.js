@@ -11,25 +11,30 @@ export const Front = ({city, usState, id, flip, onDelete}) => {
 
 
   return (
-    <Card className='front'
-      hoverable
-      bodyStyle={{width: 200}}
-      cover={<img alt="example" src={require('../header/weather-or-not-logo.png')} onClick={flip.bind(this, city)} />}
-      actions={[<Card key={id}/>, <Icon key={id} onClick={onDelete.bind(this, id)} type="delete" />, <Icon key={id + 1} type="edit" />, <Icon key={id + 2} type="ellipsis" />]}
-    >
-      <Meta
-        title={`${city}, ${usState}`}
-        description="This is the description"
-      />
-    </Card>
+    <div className='front'>
+      <Card
+        hoverable
+        cover={<img alt="example" src={require('../header/weather-or-not-logo.png')}  />}
+        actions={[<Icon key={id} onClick={onDelete.bind(this, id)} type="delete" />]}
+      >
+        <Meta
+          title={`${city}, ${usState}`}
+          description="Click here for the prediction"
+          onClick={flip.bind(this, city)}
+        />
+      </Card>
+    </div>
   )
 }
 
-export const Back = ({flip, rainStatus, barometricPress, percentPercip}) => {
+export const Back = ({city, usState, flip, rainStatus, barometricPress, percentPercip}) => {
 
 // select which image to display based off of the results from darksky
   const chooseImage = () => {
-    if (rainStatus){
+    if (rainStatus === null){
+      const logo = require('../header/weather-or-not-logo.png')
+      return logo
+    }else if (rainStatus  === true){
       const umbrella = require('./images/umbrella.png')
       return umbrella
     }else{
@@ -37,16 +42,19 @@ export const Back = ({flip, rainStatus, barometricPress, percentPercip}) => {
       return sun
     }
   }
+  const percentage = {percentPercip} * 100
 
   return (
-    <Card className='back'
-      hoverable
-      cover={<img alt="example" src={chooseImage()} onClick={flip} />}
-    >
-      <Meta
-        title= {`Barometric Pressure ${barometricPress}`}
-        description={percentPercip}
-      />
-    </Card>
+    <div className='back'>
+      <Card
+        hoverable
+        cover={<img alt="example" src={chooseImage()} onClick={flip} />}
+      >
+        <Meta
+          title= {`${city}, ${usState}`}
+          description={percentage}
+        />
+      </Card>
+    </div>
   )
 }
