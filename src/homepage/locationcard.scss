@@ -1,9 +1,8 @@
 .location-card {
   width:200px;
-  height:200px;
+  height:245px;
   margin: 10px;
   transition: margin .35s;
-  background-color: green;
 
 //
 .location-card:hover {
@@ -24,21 +23,11 @@
       position:absolute;
       top:0;
       left:0;
+      border: 2px solid black;
+      border-radius: 6px;
       transform-style: preserve-3d;
       transition: transform ease 800ms;
       -webkit-transform: ease 800ms;
-    }
-
-    .front {
-      z-index:2;
-      background-color: yellow;
-      /* front tile styles go here! */
-    }
-
-    .back {
-      background:#ffffff;
-
-      /* back tile styles go here! */
     }
   }
 }
@@ -51,4 +40,23 @@
     .front { transform: rotateY(180deg); }
     .back { transform: rotateY(0deg); }
   }
+}
+
+.weather-container {
+  height:150px;
+  width:150px;
+  margin: 0 auto;
+
+  p {
+    margin:2px;
+  }
+
+  .location {
+    font-weight:800;
+    font-size: 16px;
+  }
+}
+
+.card-logo{
+  max-width: 100%;
 }

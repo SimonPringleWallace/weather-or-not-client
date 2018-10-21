@@ -11,8 +11,14 @@ export const Front = ({city, usState, id, flip, onDelete}) => {
 
 
   return (
-    <div className='front'>
-      <Card
+    <div className='front' onClick={flip.bind(this, city)}>
+      <div className='weather-container'><img className='card-logo' src={require('../header/weather-or-not-logo.png')}/>
+        <p className='location'>{city}, {usState}</p>
+        <p>Click for the forecast</p>
+        <button onClick={onDelete.bind(this, id)}> Remove Location</button>
+      </div>
+      {/* <Card
+        loading
         hoverable
         cover={<img alt="example" src={require('../header/weather-or-not-logo.png')}  />}
         actions={[<Icon key={id} onClick={onDelete.bind(this, id)} type="delete" />]}
@@ -23,6 +29,7 @@ export const Front = ({city, usState, id, flip, onDelete}) => {
           onClick={flip.bind(this, city)}
         />
       </Card>
+      <button>hi</button> */}
     </div>
   )
 }
@@ -45,16 +52,20 @@ export const Back = ({city, usState, flip, rainStatus, barometricPress, percentP
   const percentage = {percentPercip} * 100
 
   return (
-    <div className='back'>
-      <Card
-        hoverable
-        cover={<img alt="example" src={chooseImage()} onClick={flip} />}
-      >
-        <Meta
-          title= {`${city}, ${usState}`}
-          description={percentage}
-        />
-      </Card>
+    <div className='back' onClick={flip.bind(this, city)}>
+      <div className='weather-container'><img className='card-logo' src={chooseImage()}/>
+        <p className='location'>{city}, {usState}</p>
+      </div>
+      {/* <Card
+      hoverable
+      cover={<img alt="example" src={chooseImage()} onClick={flip} />}
+    >
+      <Meta
+        title= {`${city}, ${usState}`}
+        description={percentage}
+      />
+    </Card>
+    <button>hi</button> */}
     </div>
   )
 }
