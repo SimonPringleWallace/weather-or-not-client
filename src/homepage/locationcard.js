@@ -22,30 +22,31 @@ class LocationCard extends React.Component {
 
   flip = async (city) => {
     this.setState({ flipped: !this.state.flipped })
-    if (typeof city === 'string') {
-      const usState = 'MA'
-      const response = await forecastIndex(city, usState)
-        .then(async(response) => {
-          if (response.ok) {
-            this.setState({error: false})
-            response = await response.json()
-            /* set the state to the probablity of percipitation and the
-            barometric preassure of the first daily value(today) returned from
-            the API call. */
-            await this.setState({percentPercip: response.daily.data[0].precipProbability, barometricPress: response.daily.data[0].pressure})
-            /* check to see if the chance of percipitation is greater than 50%
-             or the mb of pressure is below 1009*/
-            if (this.state.barometricPress > 1011) {
-              await this.setState({rainStatus: false})
+    if (!this.state.flipped) {
+      if (typeof city === 'string') {
+        const usState = 'MA'
+        const response = await forecastIndex(city, usState)
+          .then(async(response) => {
+            if (response.ok) {
+              this.setState({error: false})
+              response = await response.json()
+              /* set the state to the probablity of percipitation and the
+              barometric preassure of the first daily value(today) returned from
+              the API call. */
+              await this.setState({percentPercip: response.daily.data[0].precipProbability, barometricPress: response.daily.data[0].pressure})
+              /* check to see if the chance of percipitation is greater than 50%
+              or the mb of pressure is below 1009*/
+              if (this.state.precipProbability >= .5 || this.state.barometricPress < 1008) {
+                await this.setState({rainStatus: true})
+              }else {
+                await this.setState({rainStatus: false})
+              }
             }else{
-              (this.state.precipProbability >= .5 || this.state.barometricPress < 1009)
-              await this.setState({rainStatus: true})
+              this.setState({error: true})
             }
-          }else{
-            this.setState({error: true})
-          }
-        })
-        .catch(() => {this.setState({error: true})})
+          })
+          .catch(() => {this.setState({error: true})})
+      }
     }
   }
 
