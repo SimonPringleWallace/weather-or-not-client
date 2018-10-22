@@ -1,7 +1,5 @@
 import React from 'react'
-import {Card, Icon, Avatar } from 'antd'
 import 'antd/dist/antd.css'
-const { Meta } = Card
 import './locationcard.scss'
 
 
@@ -29,10 +27,10 @@ export const Back = ({city, usState, flip, rainStatus, barometricPress, percentP
       const logo = require('../header/weather-or-not-logo.png')
       return logo
     }else if (rainStatus  === true){
-      const umbrella = require('./images/umbrella.png')
+      const umbrella = require('../shared/images/umbrella.png')
       return umbrella
     }else{
-      const sun = require('./images/sun.png')
+      const sun = require('../shared/images/sun.png')
       return sun
     }
   }

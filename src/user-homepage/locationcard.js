@@ -1,7 +1,6 @@
 import React from 'react'
-import {destroyLocation} from './homepage_api.js'
+import {destroyLocation, forecastIndex} from './../shared/weather_apis.js'
 import Flipcard from './flipcard'
-import { forecastIndex } from './homepage_api.js'
 
 
 class LocationCard extends React.Component {

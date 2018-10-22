@@ -9,7 +9,7 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import Homepage from './homepage/homepage'
-import UserHomepage from './homepage/userhomepage'
+import UserHomepage from './user-homepage/userhomepage'
 
 class App extends Component {
   constructor () {

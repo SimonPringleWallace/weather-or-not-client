@@ -1,9 +1,9 @@
 import React from 'react'
 import './homepage.scss'
 import axios from 'axios'
-import {forecastIndex} from './homepage_api.js'
-import {usStates, stateOptions} from './usStateshandling.js'
-import {Umbrella, QuestionMark, AllClear, PleaseSignIn} from './weatherImages.js'
+import {forecastIndex} from './../shared/weather_apis.js'
+import {usStates, stateOptions} from './../shared/usStateshandling.js'
+import {Umbrella, QuestionMark, AllClear, PleaseSignIn} from './../shared/weatherImages.js'
 import messages from '../auth/messages.js'
 // import AllClear from './AllClear.js'
 
@@ -103,7 +103,7 @@ class Homepage extends React.Component {
     return (
       <div className="homepage-flex">
         <h4> Need that Umbrella? </h4>
-        <div>Choose your city to <br/> find out</div>
+        <div>Enter your city to <br/> find out</div>
         <div className='input-flex'>
           <input placeholder='City' onChange={this.recordCity}></input>
           <select onChange={this.handleSelect}>{stateOptions}</select>
