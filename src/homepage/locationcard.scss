@@ -3,6 +3,11 @@
   height:245px;
   margin: 10px;
   transition: margin .35s;
+<<<<<<< Updated upstream
+=======
+  display: block;
+  background-color: green;
+>>>>>>> Stashed changes
 
 //
 .location-card:hover {
@@ -26,8 +31,24 @@
       border: 2px solid black;
       border-radius: 6px;
       transform-style: preserve-3d;
+<<<<<<< Updated upstream
       transition: transform ease 800ms;
       -webkit-transform: ease 800ms;
+=======
+      transition: transform ease 500ms;
+      -webkit-transform: ease 500ms;
+    }
+
+    .front {
+      z-index:2;
+      /* front tile styles go here! */
+    }
+
+    .back {
+      background:#9E1919;
+
+      /* back tile styles go here! */
+>>>>>>> Stashed changes
     }
   }
 }

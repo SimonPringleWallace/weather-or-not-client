@@ -11,6 +11,7 @@ export const Front = ({city, usState, id, flip, onDelete}) => {
 
 
   return (
+<<<<<<< Updated upstream
     <div className='front' onClick={flip.bind(this, city)}>
       <div className='weather-container'><img className='card-logo' src={require('../header/weather-or-not-logo.png')}/>
         <p className='location'>{city}, {usState}</p>
@@ -18,6 +19,20 @@ export const Front = ({city, usState, id, flip, onDelete}) => {
         <button onClick={onDelete.bind(this, id)}> Remove Location</button>
       </div>
     </div>
+=======
+    <Card className='front'
+      hoverable
+      bordered
+      bodyStyle={{width: 200}}
+      cover={<img alt="example" src={require('../header/weather-or-not-logo.png')} onClick={flip.bind(this, city)} />}
+      actions={[<Icon key={id} onClick={onDelete.bind(this, id)} type="delete" />]}
+    >
+      <Meta
+        title={`${city}, ${usState}`}
+        description="This is the description"
+      />
+    </Card>
+>>>>>>> Stashed changes
   )
 }
 
