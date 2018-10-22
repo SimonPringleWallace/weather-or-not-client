@@ -23,7 +23,7 @@ I would take the Probabilty of Percipitation that came back from
 Dark Sky and, if it was above 50% return true for needing an umbrella, and
 otherwise return false, however...
 
-##### A word about PoP
+#### A word about PoP
 Most people (very reasonably) believe that that percentage sign next to that
 image of rain on your weather app is the percent chance of percipitation- that
 is, the percent chance that you will leave your house and get rained on. However,
@@ -41,10 +41,10 @@ So the next time you think to yourself,
 >
 check yourself. Given this formula, a forecaster
 could be 100% certain that rain was going to fall on 30% of Boston and, although
-that's only a 30% PoP, 30% of Boston would definately need umbrellas on that day
-- and I wanted to make sure that they were covered (...so to speak).
+that's only a 30% PoP, 30% of Boston would definately need umbrellas on that day;
+and I wanted to make sure that they were covered (...so to speak).
 
-##### Enter Barometric Pressure
+#### Enter Barometric Pressure
 While PoP may depend on several factors, barometric pressure is a constant.
 Higher pressure (above 1014 millibars of mercury) means clear weather, while
 lower pressure (1009 Millibars and below) is an indecator of bad weather (though
