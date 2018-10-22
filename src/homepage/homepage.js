@@ -62,10 +62,16 @@ class Homepage extends React.Component {
 
 
   //To handle a user selecting a city from the dropdown menu
-  handleSelect = async (e) => {
-    // set state equal to result of the api call
-    await this.setState({selectedCity: e.target.value})
-    this.setState({rainStatus: null})
+  // handleSelect = async (e) => {
+  //   // set state equal to result of the api call
+  //   await this.setState({selectedCity: e.target.value})
+  //   this.setState({rainStatus: null})
+  // }
+
+  // handle a user's input into the search bar
+  recordCity = (event) => {
+    this.setState({selectedCity: event.target.value})
+    console.log(this.state.selectedCity)
   }
 
   selectComponents = () => {
@@ -98,6 +104,7 @@ class Homepage extends React.Component {
       <div className="homepage-flex">
         <h4> Need that Umbrella? </h4>
         <div>Choose your city to <br/> find out</div>
+        <input placeholder='city' onChange={this.recordCity}></input>
         <select onChange={this.handleSelect}>{cityOptions}</select>
         <div className='weather-image-container'>{this.selectComponents()}</div>
         <form onSubmit={this.counter}><button> get forecast</button> </form>
