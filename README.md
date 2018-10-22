@@ -37,7 +37,8 @@ Gizmodo.com
 
 So the next time you think to yourself,
 
-> I'll leave this umbella at home, there's only a 30% chance of rain today,>
+> I'll leave this umbella at home, there's only a 30% chance of rain today,
+>
 check yourself. Given this formula, a forecaster
 could be 100% certain that rain was going to fall on 30% of Boston and, although
 that's only a 30% PoP, 30% of Boston would definately need umbrellas on that day
