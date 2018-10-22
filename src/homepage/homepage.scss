@@ -21,8 +21,16 @@ button {
 .plug {
   margin-top: 20px;
 }
-select {
-  width:200px;
+input-flex{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+input, select {
+  border-radius: 4px;
   height:40px;
-  margin-top:10px;
+  margin-top: 5px;
+}
+select {
+  width:50px;
 }
