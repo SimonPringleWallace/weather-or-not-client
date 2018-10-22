@@ -30,10 +30,9 @@ is, the percent chance that you will leave your house and get rained on. However
 the reality is much more nuanced. that % is, in fact, Percent OF Percipitation
 or PoP and it follows a very specific formula:
 
-> PoP = C x A where “C” = the confidence that precipitation will occur somewhere in the forecast area, and where “A” = the percent of the area that will receive measurable precipitation, if it occurs at all.
+> PoP = C x A where “C” = the confidence that precipitation will occur somewhere in the forecast area, and where “A” = the percent of the area that will receive measurable precipitation, if it occurs at all. - Matt Hardigree, What It Really Means When There's A 50 Percent Chance Of Rain - Gizmodo.com
 >
-Matt Hardigree, What It Really Means When There's A 50 Percent Chance Of Rain
-Gizmodo.com
+
 
 So the next time you think to yourself,
 
