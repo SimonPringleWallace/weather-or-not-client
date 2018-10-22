@@ -54,7 +54,6 @@ class Homepage extends React.Component {
           .catch(() => {this.setState({error: true})})
       }
     }
-    console.log(this.state.forecast)
   }
 
 

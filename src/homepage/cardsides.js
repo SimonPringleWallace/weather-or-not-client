@@ -37,9 +37,6 @@ export const Back = ({city, usState, flip, rainStatus, barometricPress, percentP
     }
   }
   const percentage = percentPercip * 100
-  console.log(percentage)
-  console.log(barometricPress)
-  console.log(rainStatus)
 
   return (
     <div className='back' onClick={flip.bind(this, city)}>
