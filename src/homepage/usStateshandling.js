@@ -1,5 +1,5 @@
 import React from  'react'
-export const cities = [
+export const usStates = [
   'AK',
   'AL',
   'AR',
@@ -55,10 +55,8 @@ export const cities = [
 ]
 
 // provide options for the city drop down menu
-export const cityOptions = cities.map(city => {
+export const stateOptions = usStates.map(usState => {
   return <option
-    key={city}
-    latitude={city.latitude}
-    longitude={city.longitude}
-    value={city}>{city}</option>
+    key={usState}
+    value={usState}>{usState}</option>
 })

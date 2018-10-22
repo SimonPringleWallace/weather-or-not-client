@@ -20,16 +20,16 @@ class LocationCard extends React.Component {
   // TODO save this data in state for each city so that a user doesn't have to get the
   // same data everytime they click
 
-  flip = async (city) => {
+  flip = async (city, usState) => {
     this.setState({ flipped: !this.state.flipped })
     if (!this.state.flipped) {
       if (typeof city === 'string') {
-        const usState = 'MA'
         const response = await forecastIndex(city, usState)
           .then(async(response) => {
             if (response.ok) {
               this.setState({error: false})
               response = await response.json()
+              console.log(response)
               /* set the state to the probablity of percipitation and the
               barometric preassure of the first daily value(today) returned from
               the API call. */

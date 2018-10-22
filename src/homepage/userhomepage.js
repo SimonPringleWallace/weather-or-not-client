@@ -3,7 +3,7 @@ import './homepage.scss'
 import axios from 'axios'
 import {forecastIndex, getLocations, apiCreateLocation, apiDestroyLocation} from './homepage_api.js'
 import {Umbrella, QuestionMark, AllClear} from './weatherImages.js'
-import {cities, cityOptions} from './citieshandling.js'
+import {usStates, stateOptions} from './usStateshandling.js'
 import LocationCard from './locationcard.js'
 import './locationcard.scss'
 import './userhomepage.scss'
@@ -14,7 +14,8 @@ class UserHomepage extends React.Component {
     super(props)
     this.state = {
       locations: [],
-      usState: 'MA'
+      usState: '',
+      selectedCity:''
     }
   }
   // when component mounts
@@ -57,7 +58,14 @@ class UserHomepage extends React.Component {
   }
 
   handleSelect = async (e) => {
-    await this.setState({selectedCity: e.target.value})
+    // set state equal to result of the api call
+    await this.setState({usState: e.target.value})
+    this.setState({rainStatus: null})
+  }
+
+  recordCity = (event) => {
+    this.setState({selectedCity: event.target.value})
+    console.log(this.state.selectedCity)
   }
 
   destroyLocation = async (id) => {
@@ -95,7 +103,10 @@ class UserHomepage extends React.Component {
       <div className="userhomepage-flex">
         <div className='errordiv'>{this.errorMessage()}</div>
         <div>Track a new location</div>
-        <select onChange={this.handleSelect}>{cityOptions}</select>
+        <div className='input-flex'>
+          <input placeholder='City' onChange={this.recordCity}></input>
+          <select onChange={this.handleSelect}>{stateOptions}</select>
+        </div>
         <button onClick={this.createLocation}> Track it!</button>
         <div className='card-flex'>
           {this.state.locations.map(location => (

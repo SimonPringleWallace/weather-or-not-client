@@ -11,7 +11,7 @@ export const Front = ({city, usState, id, flip, onDelete}) => {
 
 
   return (
-    <div className='front' onClick={flip.bind(this, city)}>
+    <div className='front' onClick={flip.bind(this, city, usState)}>
       <div className='weather-container'><img className='card-logo' src={require('../header/weather-or-not-logo.png')}/>
         <p className='location'>{city}, {usState}</p>
         <p>Click for the forecast</p>

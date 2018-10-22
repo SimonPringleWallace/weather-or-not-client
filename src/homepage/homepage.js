@@ -2,7 +2,7 @@ import React from 'react'
 import './homepage.scss'
 import axios from 'axios'
 import {forecastIndex} from './homepage_api.js'
-import {cities, cityOptions} from './citieshandling.js'
+import {usStates, stateOptions} from './usStateshandling.js'
 import {Umbrella, QuestionMark, AllClear, PleaseSignIn} from './weatherImages.js'
 import messages from '../auth/messages.js'
 // import AllClear from './AllClear.js'
@@ -105,8 +105,8 @@ class Homepage extends React.Component {
         <h4> Need that Umbrella? </h4>
         <div>Choose your city to <br/> find out</div>
         <div className='input-flex'>
-          <input placeholder='city' onChange={this.recordCity}></input>
-          <select onChange={this.handleSelect}>{cityOptions}</select>
+          <input placeholder='City' onChange={this.recordCity}></input>
+          <select onChange={this.handleSelect}>{stateOptions}</select>
         </div>
         <div className='weather-image-container'>{this.selectComponents()}</div>
         <form onSubmit={this.counter}><button> get forecast</button> </form>
