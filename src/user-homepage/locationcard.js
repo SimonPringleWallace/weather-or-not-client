@@ -28,7 +28,6 @@ class LocationCard extends React.Component {
             if (response.ok) {
               this.setState({error: false})
               response = await response.json()
-              console.log(response)
               /* set the state to the probablity of percipitation and the
               barometric preassure of the first daily value(today) returned from
               the API call. */
@@ -45,12 +44,13 @@ class LocationCard extends React.Component {
                 await this.setState({rainStatus: false})
               }
             }else{
-              this.setState({error: true})
+              await this.setState({error: true})
             }
           })
           .catch(() => {this.setState({error: true})})
       }
     }
+    console.log(this.state)
   }
 
   render () {
@@ -66,6 +66,7 @@ class LocationCard extends React.Component {
           id = {this.props.id}
           usState={this.props.usState}
           rainStatus = {this.state.rainStatus}
+          error={this.state.error}
           barometricPress={this.state.barometricPress}
           percentPercip={this.state.percentPercip}
         >

@@ -33,6 +33,7 @@ class Flipcard extends React.Component {
           />
           <Back
             flip={this.props.flip}
+            error={this.props.error}
             rainStatus={this.props.rainStatus}
             barometricPress={this.props.barometricPress}
             percentPercip={this.props.percentPercip}

@@ -103,7 +103,7 @@ class Homepage extends React.Component {
     return (
       <div className="homepage-flex">
         <h4> Need that Umbrella? </h4>
-        <div>Enter your city to <br/> find out</div>
+        <div>Enter your city and state to <br/> find out</div>
         <div className='input-flex'>
           <input placeholder='City' onChange={this.recordCity}></input>
           <select onChange={this.handleSelect}>{stateOptions}</select>

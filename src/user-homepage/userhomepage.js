@@ -65,7 +65,6 @@ class UserHomepage extends React.Component {
 
   recordCity = (event) => {
     this.setState({selectedCity: event.target.value})
-    console.log(this.state.selectedCity)
   }
 
   destroyLocation = async (id) => {

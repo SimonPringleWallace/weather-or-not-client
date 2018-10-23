@@ -19,9 +19,24 @@ export const Front = ({city, usState, id, flip, onDelete}) => {
   )
 }
 
-export const Back = ({city, usState, flip, rainStatus, barometricPress, percentPercip}) => {
+export const Back = ({
+  error,
+  city,
+  usState,
+  flip,
+  rainStatus,
+  barometricPress,
+  percentPercip
+}) => {
 
-// select which image to display based off of the results from darksky
+  // select which image to display based off of the results from darksky
+  const errorHandler  = () => {
+    if (error){
+      const error = 'This might not be a real location, please delete and try again'
+      return error
+    }
+  }
+
   const chooseImage = () => {
     if (rainStatus === null){
       const logo = require('../header/weather-or-not-logo.png')
@@ -40,6 +55,7 @@ export const Back = ({city, usState, flip, rainStatus, barometricPress, percentP
     <div className='back' onClick={flip.bind(this, city)}>
       <div className='weather-container'><img className='card-logo' src={chooseImage()}/>
         <p className='location'>{city}, {usState}</p>
+        <p>{errorHandler()}</p>
       </div>
     </div>
   )
