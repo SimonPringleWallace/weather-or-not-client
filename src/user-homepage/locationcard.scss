@@ -1,6 +1,6 @@
 .location-card {
   width:200px;
-  height:245px;
+  height:265px;
   margin: 10px;
   transition: margin .35s;
 
@@ -31,7 +31,14 @@
       }
     }
   }
-
+.front{
+  background-image: url('./../shared/images/back-image.jpeg');
+  background-size: cover;
+}
+.back {
+  background-image: url('./../shared/images/clouds.jpg');
+  background-size: cover;
+}
 .location-card {
   .front { transform: rotateY(0deg); }
   .back { transform: rotateY(-180deg); }
@@ -48,11 +55,16 @@
   margin: 0 auto;
 
   p {
+    font-weight:800;
+    font-size:12px;
     margin:2px;
     text-transform: capitalize;
+    text-decoration: underline;
   }
 
   .location {
+    color:black;
+    text-decoration: none;
     font-weight:800;
     font-size: 16px;
   }

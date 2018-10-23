@@ -36,7 +36,8 @@ class UserHomepage extends React.Component {
       .catch(() => {this.setState({locationError: true})})
   }
 
-  createLocation = async () => {
+  createLocation = async (e) => {
+    e.preventDefault()
     // stash the current state's locations in a constant
     const locations = this.state.locations
     // make the request to creat the location
@@ -49,7 +50,7 @@ class UserHomepage extends React.Component {
           locations.push(response.location)
           // reset the state to include the location that was create
           //meaning that the new location will instantly appear on the screen
-          this.setState({locations: locations})
+          this.setState({locations: locations, selectedCity: ''})
         }else {
           this.setState(this.setState({createError: true}))
         }
@@ -102,11 +103,13 @@ class UserHomepage extends React.Component {
       <div className="userhomepage-flex">
         <div className='errordiv'>{this.errorMessage()}</div>
         <div>Track a new location</div>
-        <div className='input-flex'>
-          <input placeholder='City' onChange={this.recordCity}></input>
-          <select onChange={this.handleSelect}>{stateOptions}</select>
-        </div>
-        <button onClick={this.createLocation}> Track it!</button>
+        <form onSubmit={this.createLocation}>
+          <div className='input-flex'>
+            <input placeholder='City' value={this.state.selectedCity} onChange={this.recordCity}></input>
+            <select onChange={this.handleSelect}>{stateOptions}</select>
+          </div>
+          <button type='submit'> Track it!</button>
+        </form>
         <div className='card-flex'>
           {this.state.locations.map(location => (
             <LocationCard

@@ -108,7 +108,6 @@ class Homepage extends React.Component {
         </div>
         <div className='weather-image-container'>{this.selectComponents()}</div>
         <form onSubmit={this.counter}><button> get forecast</button> </form>
-        <p className='plug'> Sign in to save your locations <br/> and customize your glances </p>
       </div>
     )
   }
