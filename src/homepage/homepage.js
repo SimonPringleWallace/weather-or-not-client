@@ -57,7 +57,6 @@ class Homepage extends React.Component {
           .catch(() => {this.setState({error: true})})
       }
     }
-    console.log(this.state)
   }
 
 
@@ -71,7 +70,6 @@ class Homepage extends React.Component {
   // handle a user's input into the search bar
   recordCity = (event) => {
     this.setState({selectedCity: event.target.value})
-    console.log(this.state.selectedCity)
   }
 
   selectComponents = () => {
