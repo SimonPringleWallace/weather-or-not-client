@@ -11,7 +11,7 @@ class Homepage extends React.Component {
   constructor() {
     super()
     this.state = {
-      usState:'',
+      usState:'AK',
       forecast: '',
       clickCounter: 0,
       selectedCity:'',

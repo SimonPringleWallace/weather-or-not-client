@@ -14,7 +14,7 @@ class UserHomepage extends React.Component {
     super(props)
     this.state = {
       locations: [],
-      usState: '',
+      usState: 'AK',
       selectedCity:''
     }
   }
