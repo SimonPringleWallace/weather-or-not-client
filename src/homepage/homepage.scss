@@ -1,3 +1,7 @@
+body{
+  background-image:url('../shared/images/hollingshead.gif');
+  background-size:cover;
+}
 .homepage-flex {
   display: flex;
   flex-direction: column;
@@ -6,7 +10,6 @@
   clear:right;
   text-align: center;
   margin-top: 70px;
-
 }
 .weather-image-container {
   height:150px;
