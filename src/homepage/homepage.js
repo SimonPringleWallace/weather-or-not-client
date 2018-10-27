@@ -36,6 +36,7 @@ class Homepage extends React.Component {
             if (response.ok) {
               this.setState({error: false})
               response = await response.json()
+              console.log(response)
               /* set the state to the probablity of percipitation and the
               barometric preassure of the first daily value(today) returned from
               the API call. */
@@ -45,7 +46,7 @@ class Homepage extends React.Component {
                 await this.setState({rainStatus:false})
                 /* check to see if the chance of percipitation is greater than 50%
                 or the mb of pressure is below 1008*/
-              }else if (this.state.precipProbability >= .5 || this.state.barometricPress < 1008) {
+              }else if (this.state.percentPercip >= .5 || this.state.barometricPress < 1008) {
                 await this.setState({rainStatus: true})
               }else {
                 await this.setState({rainStatus: false})
@@ -57,6 +58,9 @@ class Homepage extends React.Component {
           .catch(() => {this.setState({error: true})})
       }
     }
+    console.log(this.state.rainStatus)
+    console.log(this.state.percentPercip)
+    console.log(this.state.barometricPress)
   }
 
 

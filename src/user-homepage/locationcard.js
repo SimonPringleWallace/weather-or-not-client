@@ -38,7 +38,7 @@ class LocationCard extends React.Component {
                 await this.setState({rainStatus:false})
                 /* check to see if the chance of percipitation is greater than 50%
                 or the mb of pressure is below 1008*/
-              }else if (this.state.precipProbability >= .5 || this.state.barometricPress < 1008) {
+              }else if (this.state.percentPercip >= .5 || this.state.barometricPress < 1008) {
                 await this.setState({rainStatus: true})
               }else {
                 await this.setState({rainStatus: false})
